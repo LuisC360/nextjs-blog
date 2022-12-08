@@ -4,17 +4,18 @@ import Layout, {siteTitle} from '../components/layout';
 import {getSortedPostData} from '../lib/posts';
 import Link from 'next/link';
 import Date from '../components/date';
+import {GetStaticProps} from 'next';
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
     const allPostsData = getSortedPostData();
     return {
         props: {
             allPostsData
         }
     };
-}
+};
 
-export default function Home({allPostsData}) {
+export default function Home({allPostsData}: {allPostsData: {date: string; title: string; id: string}[]}) {
     return (
         <Layout home>
             <Head>
@@ -23,9 +24,9 @@ export default function Home({allPostsData}) {
             <section className={utilStyles.headingMd}>
                 <p>Hello, I'm Luis. I am a developer and a translator (Spanish/English)</p>
                 <p>
-                    I am currently working for Fractal Software.
+                    I am currently working for Fractal Software
                     <br />
-                    You can check my portfolio down below, as well as some articles of my authorship.
+                    You can check my portfoilo down below, as well as some articles of my authorship.
                 </p>
             </section>
             <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
